@@ -1,5 +1,5 @@
 import os
-from tools.colors import RED, RESET, GREEN
+from tools.colors import RED, RESET, GREEN, YELLOW
 
 def nextSelectStep(targetDir):
     number_file, counter_file, listFile = 0, 0, []
@@ -14,10 +14,10 @@ def nextSelectStep(targetDir):
 
     for file in listFile:
         number_file+=1
-        print(f'[{number_file}] {file}')
+        print(f'{YELLOW}[{number_file}] {file}{RESET}\n')
 
     try:
-        selectNumberFile = int(input('\nSelect File: '))
+        selectNumberFile = int(input(f'\n{GREEN}Select File: {RESET}'))
         selectElementFile = selectNumberFile-1
         targetFile = listFile[selectElementFile]
         print(f'\n{GREEN}File: {targetFile}{RESET}\n')
@@ -27,7 +27,7 @@ def nextSelectStep(targetDir):
     else:return f'{targetDir}/{targetFile}'
 
 def selectFile():
-    notIndexDir = ['tools']
+    notIndexDir = ['tools', '.git', 'BaseAll']
     number_dir, listDir = 0, []
     for base_dir in os.listdir():
         if os.path.isdir(base_dir) and base_dir not in notIndexDir:
@@ -39,10 +39,10 @@ def selectFile():
         print(f'[{number_dir}] {base_dir}')
 
     try:
-        selectDir = int(input('\nSelect number DIR: '))
+        selectDir = int(input(f'\n{GREEN}Select number DIR: {RESET}'))
         selectElementList = selectDir-1
         targetDir = listDir[selectElementList]
-        print(f'Dir: {targetDir}')
+        print(f'{GREEN}Dir: {targetDir}{RESET}')
         return nextSelectStep(targetDir)
     except IndexError:
         selectFile()
