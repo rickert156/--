@@ -17,7 +17,7 @@ def nextSelectStep(targetDir):
         print(f'{YELLOW}[{number_file}] {file}{RESET}\n')
 
     try:
-        selectNumberFile = int(input(f'\n{GREEN}Select File: {RESET}'))
+        selectNumberFile = int(input(f'{GREEN}Select File: {RESET}'))
         selectElementFile = selectNumberFile-1
         targetFile = listFile[selectElementFile]
         print(f'\n{GREEN}File: {targetFile}{RESET}\n')
@@ -27,7 +27,7 @@ def nextSelectStep(targetDir):
     else:return f'{targetDir}/{targetFile}'
 
 def selectFile():
-    notIndexDir = ['tools', '.git', 'BaseAll']
+    notIndexDir = ['tools', '.git']
     number_dir, listDir = 0, []
     for base_dir in os.listdir():
         if os.path.isdir(base_dir) and base_dir not in notIndexDir:
@@ -39,10 +39,10 @@ def selectFile():
         print(f'[{number_dir}] {base_dir}')
 
     try:
-        selectDir = int(input(f'\n{GREEN}Select number DIR: {RESET}'))
+        selectDir = int(input(f'{GREEN}Select number DIR: {RESET}'))
         selectElementList = selectDir-1
         targetDir = listDir[selectElementList]
-        print(f'{GREEN}Dir: {targetDir}{RESET}')
+        print(f'\n{GREEN}Dir: {targetDir}{RESET}\n')
         return nextSelectStep(targetDir)
     except IndexError:
         selectFile()
