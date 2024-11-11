@@ -1,10 +1,10 @@
 import csv, os
 from tools.selectFile import selectFile
-from tools.readBase import readBaseApollo
+from tools.readBase import readBaseApollo, checkEmail, EMAIL_LIST
 from tools.RecordData import BASE_FILE
            
 def startBase():
-    t = "Name,Job Title,Email,Company,Domain,Location,Phone,Linkedin,Twitter,Facebook"
+    t = "Email,Name,Job Title,Company,Domain,Location,Phone,Linkedin,Twitter,Facebook"
     BASE = 'BaseAll'
     if not os.path.exists(BASE):
         os.makedirs(BASE)
@@ -19,4 +19,5 @@ def main():
 
 if __name__ == '__main__':
     startBase()
+    checkEmail()
     main()

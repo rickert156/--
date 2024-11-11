@@ -9,14 +9,13 @@ def checkEmail():
     
     targenFile = f'{BASE_DIR}/{BASE_FILE}'
     with open(targenFile, 'r') as file:
+        print('Start reading the database...')
         for row in csv.DictReader(file):
             email = row['Email']
             EMAIL_LIST+=[email]
-
+        print('Finish reading the database!\n')
 
 def readBaseApollo(selectFile):
-    checkEmail()
-
     global EMAIL_LIST
 
     with open(selectFile, 'r') as file:
