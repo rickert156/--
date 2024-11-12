@@ -1,5 +1,7 @@
 from tools.selectFile import selectFile
-import csv
+from tools.RecordData import BASE_DIR
+from tools.colors import GREEN, RESET
+import csv, os
 
 def createListDomain(base, selectList):
     global NEW_DOMAIN, ALL_DOMAIN
@@ -10,21 +12,58 @@ def createListDomain(base, selectList):
             selectList.add(domain)
 
 
+def customPath():
+    newResultDir = input('Input dir: ')
+    newResultFile = input('Input file: ')
+    
+    if not os.path.exists(newResultDir):os.makedirs(newResultDir)
+    if '.csv' not in newResultFile:newResultFile = f'{newResultFile}.csv'
+    resultCustomPath = f'{newResultDir}/{newResultFile}'
+
+    return resultCustomPath
+
+def recordComparison(path, name, email, job, company, domain, location, phone, linkedin, twitter, facebook):
+    with open(path, 'a+') as file:
+        write = csv.writer(file)
+        write.writerow([name, email, job, company, domain, location, phone, linkedin, twitter, facebook])
+
 
 def ComparisonDomain():
     NEW_DOMAIN = set()
     ALL_DOMAIN = set()
-
-    print('Select current base\n')
+    #Тут будут записаны домены после сравнения
+    LIST_DOMAIN = set()
+    pushinka = '-'*40
+    print(f'{pushinka}\nSelect current base\n')
     tarFile = selectFile()
-    print('\nSelect a common base\n')
+    print(f'{pushinka}\nSelect a common base\n')
     allBase = selectFile()
-    print(tarFile)
     createListDomain(tarFile, NEW_DOMAIN)
-    print(allBase)
     createListDomain(allBase, ALL_DOMAIN)
     
-    number_domain = 0
-    for domain in NEW_DOMAIN.intersection(ALL_DOMAIN):
-        number_domain+=1
-        print(f'[{number_domain}] {domain}')
+    for domain in NEW_DOMAIN.intersection(ALL_DOMAIN):LIST_DOMAIN.add(domain)
+
+    custom = customPath()
+    print(custom)
+    
+    with open(allBase, 'r') as file:
+        number = 0
+        for row in csv.DictReader(file):
+            email = row['Email']
+            domain = row['Domain']
+            name = row['Name']
+            job = row['Job Title']
+            company = row['Company']
+            location = row['Location']
+            phone = row['Phone']
+            linkedin = row['Linkedin']
+            twitter = row['Twitter']
+            facebook = row['Facebook']
+            if domain in LIST_DOMAIN:
+                number+=1
+                recordComparison(custom, name, email, job, company, domain, location, phone, linkedin, twitter, facebook)
+                print(f'[{number}] Domain Recorded: {GREEN}{domain}{RESET}')
+    
+
+
+
