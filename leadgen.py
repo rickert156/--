@@ -2,7 +2,6 @@ import csv, os
 from tools.selectFile import selectFile
 from tools.readBase import readBaseApollo, checkEmail, EMAIL_LIST
 from tools.RecordData import BASE_FILE
-#from tools.Comparison import ComparisonDomain
            
 def startBase():
     t = "Email,Name,Job Title,Company,Domain,Location,Phone,Linkedin,Twitter,Facebook"
