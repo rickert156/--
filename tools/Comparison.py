@@ -1,6 +1,7 @@
 from tools.selectFile import selectFile
 from tools.RecordData import BASE_DIR
 from tools.colors import GREEN, RESET
+from tools.smallTools import customPath
 import csv, os
 
 def createListDomain(base, selectList):
@@ -11,16 +12,6 @@ def createListDomain(base, selectList):
             domain = row['Domain']
             selectList.add(domain)
 
-
-def customPath():
-    newResultDir = input('Input dir: ')
-    newResultFile = input('Input file: ')
-    
-    if not os.path.exists(newResultDir):os.makedirs(newResultDir)
-    if '.csv' not in newResultFile:newResultFile = f'{newResultFile}.csv'
-    resultCustomPath = f'{newResultDir}/{newResultFile}'
-
-    return resultCustomPath
 
 def recordComparison(path, name, email, job, company, domain, location, phone, linkedin, twitter, facebook):
     with open(path, 'a+') as file:
