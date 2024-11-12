@@ -27,7 +27,7 @@ def nextSelectStep(targetDir):
     else:return f'{targetDir}/{targetFile}'
 
 def selectFile():
-    notIndexDir = ['tools', '.git']
+    notIndexDir = ['tools', '.git', 'tmp']
     number_dir, listDir = 0, []
     for base_dir in os.listdir():
         if os.path.isdir(base_dir) and base_dir not in notIndexDir:
