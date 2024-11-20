@@ -55,7 +55,6 @@ def ComparisonDomain():
                 recordComparison(custom, name, email, job, company, domain, location, phone, linkedin, twitter, facebook)
                 print(f'[{number}] Domain Recorded: {GREEN}{domain}{RESET}')
     
-if __name__ == '__main__':
-    ComparisonDomain()
 
 
+ComparisonDomain()

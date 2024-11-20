@@ -4,12 +4,12 @@ from tools.readBase import readBaseApollo, checkEmail, EMAIL_LIST
 from tools.RecordData import BASE_FILE
            
 def startBase():
-    t = "Email,Name,Job Title,Company,Domain,Location,Phone,Linkedin,Twitter,Facebook"
     BASE = 'BaseAll'
     if not os.path.exists(BASE):
         os.makedirs(BASE)
-        print(f'Директория {BASE} создана\n')
-        os.system(f'echo {t} > {BASE}/{BASE_FILE}')
+        with open(f'{BASE}/{BASE_FILE}', 'a') as file:
+            write = csv.writer(file)
+            write.writerow(['Email', 'Job Title', 'Company', 'Domain', 'Location', 'Phone', 'Linkedin', 'Twitter', 'Facebook'])
     else:print(f'Директория {BASE} уже есть\n')
 
 
