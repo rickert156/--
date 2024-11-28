@@ -29,11 +29,14 @@ def readBaseApollo(selectFile):
             company = row['Company']
             location = row['Location']
             phone = row['Phone']
-            linkedin = row['Linkedin']
-            twitter = row['Twitter']
-            facebook = row['Facebook']
+            try:linkedin = row['Linkedin']
+            except:linkedin = 'N/A'
+            try:twitter = row['Twitter']
+            except: twitter = 'N/A'
+            try:facebook = row['Facebook']
+            except: facebook = 'N/A'
             if '@' in email:domain = email.split('@')[1]
-            else:domain = 'Not Defined'
+            else:domain = 'N/A'
             counter_email=number_email 
             print(f'[{number_email}] {email} | {name} {company}({domain})')
             if email not in EMAIL_LIST:
