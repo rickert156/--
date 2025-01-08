@@ -1,4 +1,4 @@
-import os
+import os, csv
 
 def customPath():
     newResultDir = input('Input dir: ')
@@ -10,4 +10,8 @@ def customPath():
 
     return resultCustomPath
 
+def createHeader(base, target_file):
+    with open(f'{base}/{target_file}', 'a') as file:
+        write = csv.writer(file)
+        write.writerow(['Name', 'Email', 'Job Title', 'Company', 'Domain', 'Location', 'Phone', 'Linkedin', 'Twitter', 'Facebook', 'Category'])
 

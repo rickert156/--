@@ -2,14 +2,14 @@ import csv, os
 from tools.selectFile import selectFile
 from tools.readBase import readBaseApollo, checkEmail, EMAIL_LIST
 from tools.RecordData import BASE_FILE
-           
+from tools.smallTools import createHeader
+
 def startBase():
     BASE = 'BaseAll'
-    if not os.path.exists(BASE):
-        os.makedirs(BASE)
-        with open(f'{BASE}/{BASE_FILE}', 'a') as file:
-            write = csv.writer(file)
-            write.writerow(['Email', 'Job Title', 'Company', 'Domain', 'Location', 'Phone', 'Linkedin', 'Twitter', 'Facebook'])
+    if not os.path.exists(f'{BASE}/{BASE_FILE}'):
+        try:os.makedirs(BASE)
+        except:pass
+        createHeader(BASE, BASE_FILE)
     else:print(f'Директория {BASE} уже есть\n')
 
 

@@ -27,7 +27,7 @@ def SearchBase():
 
 def Cleaning():
     global BASE_DIR, LIST_BASE
-    clean_file = 'clean_apollo.csv'
+    clean_file = 'category_apollo.csv'
     path_clean_file = f'{BASE_DIR}/{clean_file}'
     SearchBase()
 
@@ -64,13 +64,15 @@ def Cleaning():
                     except:twitter = 'N/A'
                     try:facebook = row['Facebook']
                     except:facebook = 'N/A'
+                    try:category = row['Category']
+                    except:category = 'N/A'
                     try:
                         if '@' in email and email:
                             number_string+=1
                             count_email+=1
                             with open(path_clean_file, 'a+') as file:
                                 write = csv.writer(file)
-                                write.writerow([name, email, job, company, domain, location, phone, linkedin, twitter, facebook])
+                                write.writerow([name, email, job, company, domain, location, phone, linkedin, twitter, facebook, category])
                             print(f'{RED}[{number_base}][{number_string}]{RESET}{GREEN}[{count_email}] Name: {name}\tEmail: {email}\tDomain: {domain}{RESET}')
                     except:pass
                 

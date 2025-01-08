@@ -35,12 +35,14 @@ def readBaseApollo(selectFile):
             except: twitter = 'N/A'
             try:facebook = row['Facebook']
             except: facebook = 'N/A'
+            try:category = row['Category']
+            except:category = 'N/A'
             if '@' in email:domain = email.split('@')[1]
             else:domain = 'N/A'
             counter_email=number_email 
             print(f'[{number_email}] {email} | {name} {company}({domain})')
-            if email not in EMAIL_LIST:
-                recordBase(email, name, job, company, domain, location, phone, linkedin, twitter, facebook)
+            if email not in EMAIL_LIST and '@' in email:
+                recordBase(name, email, job, company, domain, location, phone, linkedin, twitter, facebook, category)
         print(f'Всего имейлов: {counter_email}')
 
  
